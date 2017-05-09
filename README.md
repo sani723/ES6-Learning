@@ -47,3 +47,48 @@ if (true) {
   let a = 'ES7'; // SyntaxError thrown.
 }
 ```
+
+`const` are block-scoped, much like variables defined using the `let` statement. The value of a constant cannot change through re-assignment, and it can't be redeclared.
+
+```javascript
+const GRADE = 16;  // Constants can be declared with uppercase or lowercase, but a common convention is to use all-uppercase letters.
+var GRADE = 60; // the name GRADE is reserved for constant above, so this will fail - Duplicate declaration "GRADE"
+let GRADE = 10;  // this throws an error also
+```
+it is important to note the nature of block scoping
+
+```javascript
+if (GRADE === 16) {     
+    let GRADE = 20; // this is fine because it creates a block scoped GRADE variable 
+    console.log(GRADE); // 20    
+    var GRADE = 20; // this gets hoisted into the global context and throws an error
+}
+console.log(GRADE); // 16
+```
+
+You have to initialize `const` in it's declaration otherwise it will throw an error 
+
+```javascript
+const PI; // throws an error, missing initializer
+```
+
+`const` also works on objects. But attempting to overwrite the object throws an error.
+
+```javascript
+const OBJ = {'name': 'Sajjad'};
+OBJ = {'name': 'Scott'}; // throws an error "OBJ" is read-only
+```
+
+However, object keys are not protected, so the following statement is executed without problem.
+
+```javascript
+OBJ.name = 'Scott'; 
+```
+The same applies to arrays. It is possible to push items into array but assigning a new array will throw error
+
+```javascript
+const ARR = [];
+
+ARR.push('Sajjad'); // this is fine
+ARR = ['Scott']; // this will throw an error - "ARR" is read-only
+```
