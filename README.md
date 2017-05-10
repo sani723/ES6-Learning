@@ -96,3 +96,18 @@ ARR = ['Scott']; // this will throw an error - "ARR" is read-only
 <br>
 
 ### 2. Destructuring Assignment
+
+The destructuring assignment makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+```javascript
+let x = 2;
+let y = 3;
+[x,y] = [y,x]; 
+console.log(x); // 3
+console.log(y); // 2
+
+// [x,y] = [y,x];  Right-hand side is an array built with the values that are in `y` and `x`. and left-hand side of this assignment is not an array.
+// It looks like we are building array literal but really here we are working with individual variables `x` and `y` and sorrounding with square brackets because we are destructuring right-hand side array. 
+// In other words we are telling javascript to take the first value of array (right-hand side) and put it in `x` and take second value and put it into `y`     
+
+```
