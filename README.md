@@ -210,3 +210,34 @@ console.log(city); // Dubai
 console.log(twitter); // twitti
 console.log(insta); // insti
 ```
+
+For of iteration and destructuring
+
+```javascript
+var people = [
+  {
+    name: 'Mike Smith',
+    family: {
+      mother: 'Jane Smith',
+      father: 'Harry Smith',
+      sister: 'Samantha Smith'
+    },
+    age: 35
+  },
+  {
+    name: 'Tom Jones',
+    family: {
+      mother: 'Norah Jones',
+      father: 'Richard Jones',
+      brother: 'Howard Jones'
+    },
+    age: 25
+  }
+];
+
+for (let {name: n, family: {father: f, mother: m}} of people) {
+  console.log('Name: ' + n + ', Parents ==> Father: ' + f + ' & Mother: ' + m);
+  // Name: Mike Smith, Parents ==> Father: Harry Smith & Mother: Jane Smith
+  // Name: Tom Jones, Parents ==> Father: Richard Jones & Mother: Norah Jones
+}
+```
