@@ -284,3 +284,14 @@ let [a,b] = doWork(5);
 console.log(a); // 5
 console.log(b); // 5
 ```
+
+You can use default value assignment with the destructuring assignment notation:
+
+```javascript
+let doWork = function([x,y]=[5, 16], {marks: stuMarks}={marks: 70}) {
+  return x + y + stuMarks;
+};
+
+doWork() // 91
+```
+
