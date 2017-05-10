@@ -162,3 +162,51 @@ let [a=5, b=7] = [1];
 console.log(a); // 1
 console.log(b); // 7
 ```
+Lets destructure an object now:
+
+```javascript
+let obj = {a: 12, b: true}
+let {a, b}: obj;
+
+console.log(a); // 12
+console.log(b); // true
+``` 
+A property can be unpacked from an object and assigned to a variable with a different name than the object property.
+ 
+```javascript
+let doWork = function() {  
+  return {    
+    empName: "Sajjad",    
+    empCity: "Dubai",    
+    empTwitter: "twitti",  
+  };
+};
+
+let {empName: name, empCity: city, empTwitter: twitter} = doWork();
+
+console.log(name); // Sajjad
+console.log(city); // Dubai
+console.log(twitter); // twitti
+``` 
+
+One can also drill into complex object this way:
+
+```javascript
+let doWork = function() {  
+  return {    
+    empName: "Sajjad",    
+    empCity: "Dubai",    
+    handles: {
+      empTwitter: "twitti",
+      empInstagram: "insti",  
+    }
+  };
+};
+
+let {empName: name, empCity: city, handles: {empTwitter: twitter, empInstagram: insta} } = doWork();
+
+console.log(name); // Sajjad
+console.log(city); // Dubai
+console.log(twitter); // twitti
+console.log(insta); // insti
+```
