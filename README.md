@@ -111,4 +111,54 @@ console.log(y); // 2
 // In other words we are telling javascript to take the first value of array (right-hand side) and put it in `x` and take second value and put it into `y`
 // let [x,y] = [3,2] is also valid
 
+let a = [1,2,3,4,5];
+let [b,c] = a;
+console.log(b); // 1
+console.log(c); // 2
+
+// Parsing an array returned from a function
+
+function doWork() {
+  return [1, 2];
+}
+
+let [a, b] = doWork();
+console.log(a); // 1
+console.log(b); // 2
+```
+
+You can ignore some returned values:
+
+```javascript
+function doWork() {
+  return [1, 2, 3];
+}
+let [a, , b] = doWork();
+console.log(a); // 1
+console.log(b); // 3
+```
+
+You can ignore all returned values:
+
+```javascript
+function doWork() {
+  return [1, 2, 3];
+}
+let [,,] = doWork();
+```
+
+When destructuring an array, you can assign the remaining part of it to a variable using the rest pattern:
+
+```javascript
+let [a, ...b] = [1, 2, 3];
+console.log(a); // 1
+console.log(b); // [2, 3]
+```
+
+A variable can be assigned a default, in the case that the value pulled from the array is undefined.
+
+```javascript
+let [a=5, b=7] = [1];
+console.log(a); // 1
+console.log(b); // 7
 ```
