@@ -5,7 +5,7 @@ List of resources to learn ECMAScript 6.
 ### Table of Contents
 
 * [`let`, `const` and block scope](#1-let-const-and-block-scope)
-* [Destructuring](#2-destructuring)
+* [Destructuring Assignment](#2-destructuring-assignment)
 
 ### 1. let, const and block scope
 
@@ -95,4 +95,4 @@ ARR = ['Scott']; // this will throw an error - "ARR" is read-only
 ```
 <br>
 
-### 2. Destructuring
+### 2. Destructuring Assignment
