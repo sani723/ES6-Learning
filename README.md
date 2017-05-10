@@ -243,7 +243,7 @@ for (let {name: n, family: {father: f, mother: m}} of people) {
 }
 ```
 
-### 3. Default Parameter Values
+### 3. Default Parameters Values
 
 We all know that in JavaScript, parameters of functions default to `undefined`. However, in some situations it might be useful to set a different default value. This is where default parameters can help. 
 
