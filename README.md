@@ -148,7 +148,7 @@ function doWork() {
 let [,,] = doWork();
 ```
 
-When destructuring an array, you can assign the remaining part of it to a variable using the rest pattern:
+When destructuring an array, you can assign the remaining part of it to a variable using the rest pattern.
 
 ```javascript
 let [a, ...b] = [1, 2, 3];
@@ -212,7 +212,7 @@ console.log(twitter); // twitti
 console.log(insta); // insti
 ```
 
-For of iteration and destructuring
+For of iteration and destructuring:
 
 ```javascript
 var people = [
@@ -258,7 +258,7 @@ let doWork = function(name="Sajjad") {
 doWork();  // Sajjad
 doWork("Andy");  // Andy
 ```
-If we set an argument explicitly to undefined (not null as null is not the same as undefined, they both do evalute to false but null is something we typically use when we want to intentionally specify that there is some absence of a value.)  
+If we set an argument explicitly to undefined (not null as null is not the same as undefined, they both do evalute to false but null is something we typically use when we want to intentionally specify that there is some absence of a value.).  
 
 ```javascript
 let doWork = function(a=1, b=2, c=3) {
@@ -272,7 +272,7 @@ console.log(b); // 2 as we are passing undefined so it will take default value
 console.log(c); // 3 as we are not passing any value for third parameter so it will also take defualt value 
 ```
 
-Default parameters are available to later default parameters
+Default parameters are available to later default parameters:
 
 ```javascript
 let doWork = function(a=1, b=a) {
