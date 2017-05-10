@@ -271,3 +271,16 @@ console.log(a); // 10
 console.log(b); // 2 as we are passing undefined so it will take default value
 console.log(c); // 3 as we are not passing any value for third parameter so it will also take defualt value 
 ```
+
+Default parameters are available to later default parameters
+
+```javascript
+let doWork = function(a=1, b=a) {
+  return [a,b];
+};
+
+let [a,b] = doWork(5);
+
+console.log(a); // 5
+console.log(b); // 5
+```
