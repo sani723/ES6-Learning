@@ -6,6 +6,7 @@ List of resources to learn ECMAScript 6.
 
 * [`let`, `const` and block scope](#1-let-const-and-block-scope)
 * [Destructuring Assignment](#2-destructuring-assignment)
+* [Default Parameter Values](#3-default-parameters-values)
 
 ### 1. let, const and block scope
 
@@ -240,4 +241,33 @@ for (let {name: n, family: {father: f, mother: m}} of people) {
   // Name: Mike Smith, Parents ==> Father: Harry Smith & Mother: Jane Smith
   // Name: Tom Jones, Parents ==> Father: Richard Jones & Mother: Norah Jones
 }
+```
+
+### 3. Default Parameter Values
+
+We all know that in JavaScript, parameters of functions default to `undefined`. However, in some situations it might be useful to set a different default value. This is where default parameters can help. 
+
+Default function parameters allow formal parameters to be initialized with default values if no value or `undefined` is passed.
+
+
+```javascript
+let doWork = function(name="Sajjad") {
+  return name;
+};
+
+doWork();  // Sajjad
+doWork("Andy");  // Andy
+```
+If we set an argument explicitly to undefined (not null as null is not the same as undefined, they both do evalute to false but null is something we typically use when we want to intentionally specify that there is some absence of a value.)  
+
+```javascript
+let doWork = function(a=1, b=2, c=3) {
+  return [a,b,c];
+};
+
+let [a,b,c] = doWork(10,undefined);
+
+console.log(a); // 10
+console.log(b); // 2 as we are passing undefined so it will take default value
+console.log(c); // 3 as we are not passing any value for third parameter so it will also take defualt value 
 ```
