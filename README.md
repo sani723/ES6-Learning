@@ -298,4 +298,19 @@ doWork() // 91
 
 ### 4. Rest Parameters
 
+Rest parameters make it is easy to work with an unknown or variable number of arguments in a function. In other words we can say, the `rest parameter` allows to represent an indefinite number of arguments as an array. A `rest parameter` is always the last parameter in a function that has `...` prefix.  
+
+
+```javascript
+let sum = function(...numbers) {
+  let result = 0;
+  for(let i=0; i<numbers.length; i++) {
+    result += numbers[i];
+  }
+  return result;
+}
+
+sum(4,6,9); // 19
+```  
+
 
