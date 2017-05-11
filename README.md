@@ -7,6 +7,7 @@ List of resources to learn ECMAScript 6.
 * [`let`, `const` and block scope](#1-let-const-and-block-scope)
 * [Destructuring Assignment](#2-destructuring-assignment)
 * [Default Parameter Values](#3-default-parameters-values)
+* [Rest Operator](#4-rest-operator)
 
 ### 1. let, const and block scope
 
@@ -294,4 +295,7 @@ let doWork = function([x,y]=[5, 16], {marks: stuMarks}={marks: 70}) {
 
 doWork() // 91
 ```
+
+### 4. Rest Operator
+
 
