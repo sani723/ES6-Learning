@@ -313,4 +313,35 @@ let sum = function(...numbers) {
 sum(4,6,9); // 19
 ```  
 
+sum(); // 0 
+// If you do not pass any parameters that can populate a `rest parameter` but it will be an empty array.
+// So good thing is you do not need to check for `null` or `undefined`, you can just perform operations on that array.   
+```
 
+Traditionally in JavaScript we used to achieve above goal by using the implicit `arguments` object. `arguments` will hold all of the parameters passed to a function in an array like structure. The `arguments` object is not a real array, while `rest parameters` are array instances, meaning methods like `sort, map, forEach or pop` can be applied on it directly. In order to use array methods on the `arguments object`, it must be converted to a real array first. 
+
+Rest parameters can be destructured, that means that their data can be extracted into distinct variables.
+
+```javascript
+let sum = function(...[x, y, z]) {
+  return x + y + z;  
+}
+
+sum(1) // Nan as (b & c are undefined)
+sum(3, 6, 8) // 17
+sum(2, 4, 6, 8) // 12 the fourth parameter  is not destructured
+```
+
+Another example to count `rest parameter` elements:
+
+```javascript
+let fn1 = function(...stus) {
+  return stus.length;
+}
+
+console.log(fn1()); // 0
+
+console.log(fn1(5)); // 1
+
+console.log(fn1(1,2,3)); // 3
+```
