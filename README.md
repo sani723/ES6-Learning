@@ -97,6 +97,8 @@ ARR = ['Scott']; // this will throw an error - "ARR" is read-only
 ```
 <br>
 
+** To me always use `const` because it minimizes mutable state and will make developer life bit easy. If you REALLY need to change state, use `let`. `var` is dead to me.**
+
 ### 2. Destructuring Assignment
 
 The destructuring assignment makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
