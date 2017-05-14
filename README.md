@@ -104,8 +104,8 @@ ARR = ['Scott']; // this will throw an error - "ARR" is read-only
 The destructuring assignment makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
 
 ```javascript
-let x = 2;
-let y = 3;
+const x = 2;
+const y = 3;
 [x,y] = [y,x]; 
 console.log(x); // 3
 console.log(y); // 2
@@ -115,8 +115,8 @@ console.log(y); // 2
 // In other words we are telling javascript to take the first value of array (right-hand side) and put it in `x` and take second value and put it into `y`
 // let [x,y] = [3,2] is also valid
 
-let a = [1,2,3,4,5];
-let [b,c] = a;
+const a = [1,2,3,4,5];
+const [b,c] = a;
 console.log(b); // 1
 console.log(c); // 2
 
@@ -126,7 +126,7 @@ function doWork() {
   return [1, 2];
 }
 
-let [a, b] = doWork();
+const [a, b] = doWork();
 console.log(a); // 1
 console.log(b); // 2
 ```
@@ -137,7 +137,7 @@ You can ignore some returned values:
 function doWork() {
   return [1, 2, 3];
 }
-let [a, , b] = doWork();
+const [a, , b] = doWork();
 console.log(a); // 1
 console.log(b); // 3
 ```
@@ -148,13 +148,13 @@ You can ignore all returned values:
 function doWork() {
   return [1, 2, 3];
 }
-let [,,] = doWork();
+const [,,] = doWork();
 ```
 
 When destructuring an array, you can assign the remaining part of it to a variable using the rest pattern.
 
 ```javascript
-let [a, ...b] = [1, 2, 3];
+const [a, ...b] = [1, 2, 3];
 console.log(a); // 1
 console.log(b); // [2, 3]
 ```
@@ -162,15 +162,15 @@ console.log(b); // [2, 3]
 A variable can be assigned a default, in the case that the value pulled from the array is undefined.
 
 ```javascript
-let [a=5, b=7] = [1];
+const [a=5, b=7] = [1];
 console.log(a); // 1
 console.log(b); // 7
 ```
 Lets destructure an object now:
 
 ```javascript
-let obj = {a: 12, b: true}
-let {a, b}: obj;
+const obj = {a: 12, b: true}
+const {a, b}: obj;
 
 console.log(a); // 12
 console.log(b); // true
@@ -178,7 +178,7 @@ console.log(b); // true
 A property can be unpacked from an object and assigned to a variable with a different name than the object property.
  
 ```javascript
-let doWork = function() {  
+const doWork = function() {  
   return {    
     empName: "Sajjad",    
     empCity: "Dubai",    
@@ -186,7 +186,7 @@ let doWork = function() {
   };
 };
 
-let {empName: name, empCity: city, empTwitter: twitter} = doWork();
+const {empName: name, empCity: city, empTwitter: twitter} = doWork();
 
 console.log(name); // Sajjad
 console.log(city); // Dubai
@@ -196,7 +196,7 @@ console.log(twitter); // twitti
 One can also drill into complex object this way:
 
 ```javascript
-let doWork = function() {  
+const doWork = function() {  
   return {    
     empName: "Sajjad",    
     empCity: "Dubai",    
@@ -207,7 +207,7 @@ let doWork = function() {
   };
 };
 
-let {empName: name, empCity: city, handles: {empTwitter: twitter, empInstagram: insta} } = doWork();
+const {empName: name, empCity: city, handles: {empTwitter: twitter, empInstagram: insta} } = doWork();
 
 console.log(name); // Sajjad
 console.log(city); // Dubai
@@ -218,7 +218,7 @@ console.log(insta); // insti
 For of iteration and destructuring:
 
 ```javascript
-var people = [
+const people = [
   {
     name: 'Mike Smith',
     family: {
@@ -239,7 +239,7 @@ var people = [
   }
 ];
 
-for (let {name: n, family: {father: f, mother: m}} of people) {
+for (const {name: n, family: {father: f, mother: m}} of people) {
   console.log('Name: ' + n + ', Parents ==> Father: ' + f + ' & Mother: ' + m);
   // Name: Mike Smith, Parents ==> Father: Harry Smith & Mother: Jane Smith
   // Name: Tom Jones, Parents ==> Father: Richard Jones & Mother: Norah Jones
@@ -254,7 +254,7 @@ Default function parameters allow formal parameters to be initialized with defau
 
 
 ```javascript
-let doWork = function(name="Sajjad") {
+const doWork = function(name="Sajjad") {
   return name;
 };
 
@@ -264,11 +264,11 @@ doWork("Andy");  // Andy
 If we set an argument explicitly to undefined (not null as null is not the same as undefined, they both do evalute to false but null is something we typically use when we want to intentionally specify that there is some absence of a value.).  
 
 ```javascript
-let doWork = function(a=1, b=2, c=3) {
+const doWork = function(a=1, b=2, c=3) {
   return [a,b,c];
 };
 
-let [a,b,c] = doWork(10,undefined);
+const [a,b,c] = doWork(10,undefined);
 
 console.log(a); // 10
 console.log(b); // 2 as we are passing undefined so it will take default value
@@ -278,11 +278,11 @@ console.log(c); // 3 as we are not passing any value for third parameter so it w
 Default parameters are available to later default parameters:
 
 ```javascript
-let doWork = function(a=1, b=a) {
+const doWork = function(a=1, b=a) {
   return [a,b];
 };
 
-let [a,b] = doWork(5);
+const [a,b] = doWork(5);
 
 console.log(a); // 5
 console.log(b); // 5
@@ -291,7 +291,7 @@ console.log(b); // 5
 You can use default value assignment with the destructuring assignment notation:
 
 ```javascript
-let doWork = function([x,y]=[5, 16], {marks: stuMarks}={marks: 70}) {
+const doWork = function([x,y]=[5, 16], {marks: stuMarks}={marks: 70}) {
   return x + y + stuMarks;
 };
 
@@ -304,7 +304,7 @@ Rest parameters make it is easy to work with an unknown or variable number of ar
 
 
 ```javascript
-let sum = function(...numbers) {
+const sum = function(...numbers) {
   let result = 0;
   for(let i=0; i<numbers.length; i++) {
     result += numbers[i];
@@ -325,7 +325,7 @@ Traditionally in JavaScript we used to achieve above goal by using the implicit 
 Rest parameters can be destructured, that means that their data can be extracted into distinct variables.
 
 ```javascript
-let sum = function(...[x, y, z]) {
+const sum = function(...[x, y, z]) {
   return x + y + z;  
 }
 
@@ -337,13 +337,11 @@ sum(2, 4, 6, 8) // 12 the fourth parameter  is not destructured
 Another example to count `rest parameter` elements:
 
 ```javascript
-let fn1 = function(...stus) {
+const fn1 = function(...stus) {
   return stus.length;
 }
 
 console.log(fn1()); // 0
-
 console.log(fn1(5)); // 1
-
 console.log(fn1(1,2,3)); // 3
 ```
