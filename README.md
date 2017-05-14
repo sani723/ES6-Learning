@@ -97,7 +97,7 @@ ARR = ['Scott']; // this will throw an error - "ARR" is read-only
 ```
 <br>
 
-> :thumbsup: :thumbsup: To me always use `const` because it minimizes mutable state and will make developer life bit easy. If you REALLY need to change state, use `let`. `var` is dead to me.
+> :thumbsup: :thumbsup: To me always use `const` because it minimizes mutable state and will make developer life bit easy. If you REALLY need to change state, use `let`. `var` is dead to me. :speak_no_evil: :speak_no_evil:
 
 ### 2. Destructuring Assignment
 
