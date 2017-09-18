@@ -8,7 +8,7 @@ List of resources to learn ECMAScript 6.
 * [Destructuring Assignment](#2-destructuring-assignment)
 * [Default Parameter Values](#3-default-parameters-values)
 * [Rest Parameters](#4-rest-parameters)
-* [Template Strings](#4-template-strings)
+* [Template Strings](#5-template-strings)
 
 ### 1. let, const and block scope
 
@@ -348,3 +348,12 @@ console.log(fn1(1,2,3)); // 3
 ```
 
 ### 5. Template Strings
+
+JavaScript’s strings have always had limited functionality compared to strings in other languages. In ES6 they brought better
+* String interpolation
+* Embedded expressions
+* Multiline strings without hacks
+* String formatting
+* String tagging for safe HTML escaping, localisation and more.
+
+Template Strings use back-ticks (``) rather than the single or double quotes we're used to with regular strings.
