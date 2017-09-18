@@ -356,4 +356,111 @@ JavaScript’s strings have always had limited functionality compared to strings
 * String formatting
 * String tagging for safe HTML escaping, localisation and more.
 
-Template Strings use back-ticks (``) rather than the single or double quotes we're used to with regular strings.
+Template Strings use back-ticks `(``)` rather than the single or double quotes we're used to with regular strings.
+```javascript
+let message = `Hello World!`;
+```
+
+One of their first real benefits is string substitution. Substitution allows us to take any valid JavaScript expression (including say, the addition of variables) and inside a Template Literal, the result will be output as part of the same string.
+
+Template Strings can contain placeholders for string substitution using the ${ } syntax, as demonstrated below:
+
+```javascript
+let name = "Sajjad";
+console.log(`Hi, ${name}!`);  // "Yo, Sajjad!"
+```
+As all string substitutions in Template Strings are JavaScript expressions, we can substitute a lot more than variable names. For example, below we can use expression interpolation to embed for some readable inline math:
+
+```javascript
+let a = 10, b = 10;
+console.log(`JavaScript first appeared ${a+b} years ago. Crazy!`); // JavaScript first appeared 20 years ago. Crazy!
+
+console.log(`The number of JS MVC frameworks is ${2 * (a + b)} and not ${10 * (a + b)}.`); // The number of JS frameworks is 40 and not 200.
+```
+
+They are also very useful for functions inside expressions:
+
+```javascript
+function baz() { return "I am a result. Rarr"; }
+console.log(`foo ${baz()} bar`);
+//=> foo I am a result. Rarr bar.
+```
+
+The `${}` works fine with any kind of expression, including member expressions and method calls:
+
+```javascript
+// Example-1
+let user = {name: 'Harry Potter'};
+console.log(`Thanks for getting this into V8, ${user.name.toUpperCase()}.`); 
+// "Thanks for getting this into V8, HARRY POTTER";
+
+
+// Example-2
+let thing = 'drugs';
+console.log(`Say no to ${thing}. Although if you're talking to ${thing} you may already be on ${thing}.`);
+
+// => Say no to drugs. Although if you're talking to drugs you may already be on drugs.
+```
+
+If you require backticks inside of your string, it can be escaped using the backslash character \ as follows:
+
+```javascript
+let greeting = `\`Hello\` World!`; // `Hello` World!
+```
+
+Multiline strings in JavaScript have required hacky workarounds for some time. Current solutions for them require that strings either exist on a single line or be split into multiline strings using a ` \ (blackslash)` before each newline. For example:
+
+```javascript
+var greeting = "Hello \
+World";
+```
+
+Whilst this should work fine in most modern JavaScript engines, the behaviour itself is still a bit of a hack. One can also use string concatenation to fake multiline support, but this equally leaves something to be desired:
+
+
+```javascript
+var greeting = "Hello " +
+"World";
+```
+
+Template Strings significantly simplify multiline strings. Simply include newlines where they are needed and BOOM.
+
+
+```javascript
+console.log(`string text line 1
+string text line 2`);
+
+// string text line 1
+// string text line 2
+```
+
+
+Template Strings bring another powerful feature and that is `tagged templates`. Tagged Templates transform a Template String by placing a function name before the template string.
+
+```javascript
+function upper(strings,...values) {
+  let str = "";
+  for(let i=0; i<strings.length; i++) {
+    if(i > 0) {
+      if(typeof values[i-1] == "string") {
+        str += values[i-1].toUpperCase();
+      } else {
+        str += values[i-1];
+      }
+    }
+    str += strings[i];
+  }
+  return str;
+}
+
+var name = "sajjad",
+	twitter = "sani723",
+	classname = "es6 workshop";
+
+console.log(
+	upper`Hello ${name} (@${twitter}), welcome to the ${classname}!` ===
+	"Hello SAJJAD (@SANI723), welcome to the ES6 WORKSHOP!"
+);
+
+// true
+```
