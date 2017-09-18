@@ -8,6 +8,7 @@ List of resources to learn ECMAScript 6.
 * [Destructuring Assignment](#2-destructuring-assignment)
 * [Default Parameter Values](#3-default-parameters-values)
 * [Rest Parameters](#4-rest-parameters)
+* [Template Strings](#4-template-strings)
 
 ### 1. let, const and block scope
 
@@ -345,3 +346,5 @@ console.log(fn1()); // 0
 console.log(fn1(5)); // 1
 console.log(fn1(1,2,3)); // 3
 ```
+
+### 5. Template Strings
