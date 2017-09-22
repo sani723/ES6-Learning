@@ -483,6 +483,7 @@ The syntax for arrow functions comes in many flavors depending upon what you are
 
 Both the arguments and the body can take different forms depending on usage.
 
+
 ```js
 let show = value => value;  // even this is valid - let show = (value) => value;
 
@@ -530,6 +531,7 @@ let getItem = id => ({ id: id, name: "bag" });
 ```
 Wrapping the object literal in parentheses signals that the braces are an object literal instead of the function body.
 
+#### Creating Immediately-Invoked Function Expressions
 When you want to create a scope that is shielded from the rest of a program, you used to create `immediately-invoked function expressions (IIFEs)`. You can accomplish the same using arrow functions, so long as you wrap the arrow function in parentheses. e.g.
 
 ```js
@@ -543,8 +545,57 @@ let person = ((name) => {
 
 console.log(person.getName());      // Sajjad
 ```
+#### No this Binding
+
+One of the most common areas of error in JavaScript is the binding of this inside of functions. Since the value of this can change inside a single function depending on the context in which the function is called, it’s possible to mistakenly affect one object when you meant to affect another. Consider the following example:
+
+```js
+var PageHandler = {
+
+    id: "123456",
+
+    init: function() {
+        document.addEventListener("click", function(event) {
+            this.doSomething(event.type);     // error
+        }, false);
+    },
+
+    doSomething: function(type) {
+        console.log("Handling " + type  + " for " + this.id);
+    }
+};
+```
+
+The call to `this.doSomething()` is broken because `this` is a reference to the object that was the target of the event (in this case document), instead of being bound to `PageHandler`. If you tried to run this code, you’d get an error when the event handler fires because this.doSomething() doesn’t exist on the target document object.
 
 Arrow functions have no `this` binding, which means the value of `this` inside an arrow function can only be determined by looking up the scope chain. If the arrow function is contained within a nonarrow function, `this` will be the same as the containing function; otherwise, `this` is equivalent to the value of this in the global scope.
+
+```js
+var PageHandler = {
+
+    id: "123456",
+
+    init: function() {
+        document.addEventListener("click",
+                event => this.doSomething(event.type), false);
+    },
+
+    doSomething: function(type) {
+        console.log("Handling " + type  + " for " + this.id);
+    }
+};
+```
+
+Arrow functions are designed to be `throwaway` functions, and so cannot be used to define new types, this is evident from the missing `prototype` property, which regular functions have. If you try to use the `new` operator with an arrow function, you’ll get an error, as in this example:
+
+```js
+var MyType = () => {},
+  object = new MyType();  // error - you can't use arrow functions with 'new'
+```
+
+In this code, the call to new MyType() fails because MyType is an arrow function and therefore has no [[Construct]] behavior. Knowing that arrow functions cannot be used with new allows JavaScript engines to further optimize their behavior.
+
+> Also, since the `this` value is determined by the containing function in which the arrow function is defined, you cannot change the value of `this` using `call()`, `apply()`, or `bind()`.
 
 ### 7. Modules
 
