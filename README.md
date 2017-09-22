@@ -608,3 +608,51 @@ import { add as sum } from "./example";
 console.log(typeof add);            // undefined
 console.log(sum(1, 2));             // 3
 ```
+
+* **Default Values in Modules** The default value for a module is a single variable, function, or class as specified by the `default` keyword, and you can only set one `default` export per module. Using the `default` keyword with multiple exports is a syntax error.
+
+```js
+function sum(a, b) {
+    return a + b;
+}
+
+export default sum;
+```
+
+You can import a default value from a module using the following syntax:
+
+```js
+// import the default
+import sum from "./example";
+
+console.log(sum(1, 2));     // 3
+```
+
+Note that no curly braces `{}` are used, unlike in a non-default import. The local name sum is used to represent whatever default function the module exports.
+
+For modules that export both a default and one or more non-default bindings, you can import all exported bindings with one statement. e.g.
+
+```js
+export let city = "Dubai";
+
+export default function(a, b) {
+    return a + b;
+}
+
+// You can import both `city` and the default `function` using the following import statement:
+
+import sum, { city } from "./example.js";
+
+console.log(sum(4, 12));     // 16
+console.log(city);         // Dubai
+
+```
+
+> Keep in mind that the `default` must come before the non-defaults in the import statement.
+
+* **Re-exporting a Binding** There may be a time when you would like to re-export something that your module has imported. ou can re-export an imported value using the following statement.
+
+```js
+import { sum } from "./example";
+export { sum }
+```
