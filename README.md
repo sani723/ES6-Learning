@@ -9,6 +9,7 @@ List of resources to learn ECMAScript 6.
 * [Default Parameter Values](#3-default-parameters-values)
 * [Rest Parameters](#4-rest-parameters)
 * [Template Strings](#5-template-strings)
+* [Modules](#6-modules)
 
 ### 1. let, const and block scope
 
@@ -464,3 +465,13 @@ console.log(
 
 // true
 ```
+
+### 6. Modules
+
+Before ES6 everything in every JS file of an application shared one global scope, that caused problems like naming collisions and security concerns.
+
+One goal of ES6 was to solve the scope problem and bring some order to JS applications. That’s where modules come in.
+
+> Modules are JavaScript files that are loaded in a different mode.
+
+It helps with organization, maintenance, testing and most importantly dependency management. This separation allows us to pull in various modules only when we need them.
