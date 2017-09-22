@@ -367,7 +367,7 @@ Template Strings can contain placeholders for string substitution using the ${ }
 
 ```javascript
 let name = "Sajjad";
-console.log(`Hi, ${name}!`);  // "Yo, Sajjad!"
+console.log(`Hi, ${name}!`);  // "Hi, Sajjad!"
 ```
 As all string substitutions in Template Strings are JavaScript expressions, we can substitute a lot more than variable names. For example, below we can use expression interpolation to embed for some readable inline math:
 
