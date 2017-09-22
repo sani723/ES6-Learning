@@ -9,7 +9,8 @@ List of resources to learn ECMAScript 6.
 * [Default Parameter Values](#3-default-parameters-values)
 * [Rest Parameters](#4-rest-parameters)
 * [Template Strings](#5-template-strings)
-* [Modules](#6-modules)
+* [Arrow Functions](#6-arrow-functions)
+* [Modules](#7-modules)
 
 ### 1. let, const and block scope
 
@@ -466,7 +467,70 @@ console.log(
 // true
 ```
 
-### 6. Modules
+### 6. Arrow Functions
+
+One of the most interesting new parts of ES6 is the `arrow function`. Arrow functions are, as the name suggests, functions defined with a new syntax that uses an `“arrow” (=>)`. But arrow functions behave differently than traditional JavaScript functions in a number of important ways. e.g.
+
+* **No this, super, arguments, and new.target bindings -** The value of `this`, `super`, `arguments`, and `new.target` inside of the function is by the closest containing nonarrow function.
+* **Cannot be called with new -** Arrow functions do not have a `[[Construct]]` method and therefore cannot be used as constructors. Arrow functions throw an error when used with new.
+* **No prototype -** since you can not use `new` on an arrow function, there’s no need for a prototype. The `prototype` property of an arrow function doesn’t exist.
+* **Can’t change this -** The value of `this` inside of the function can’t be changed. It remains the same throughout the entire lifecycle of the function.
+* **No arguments object -** Since arrow functions have no `arguments` binding, you must rely on named and rest parameters to access function arguments.
+* **No duplicate named parameters -** arrow functions cannot have duplicate named parameters in strict or nonstrict mode, as opposed to nonarrow functions that cannot have duplicate named parameters only in strict mode.
+
+#### Arrow Function Syntax
+The syntax for arrow functions comes in many flavors depending upon what you are trying to accomplish. All variations begin with function arguments, followed by the arrow, followed by the body of the function. 
+
+Both the arguments and the body can take different forms depending on usage.
+
+```js
+let show = value => value;  // even this is valid - let show = (value) => value;
+
+// effectively equivalent to
+var show = function(value) {
+    return value;
+};
+```
+When there is only one argument for an arrow function, that one argument can be used directly without any further syntax. The arrow comes next and the expression to the right of the arrow is evaluated and returned. Even though there is no explicit return statement, this arrow function will return the first argument that is passed in.
+
+If you are passing in more than one argument, then you must include parentheses around those arguments. e.g.
+```js
+let sum = (a, b) => a + b;
+```
+
+If there are no arguments to the function, then you must include an empty set of parentheses in the declaration. e.g.
+```js
+let getName = () => "Sajjad";
+```
+
+When your function body, consisting of more than one expression, then you need to wrap the function body in braces and explicitly define a return value e.g.
+
+```js
+let total = (a, b) => {
+    let tax = 10, sum = 0;
+    sum = ( a + b ) * tax/2;
+    return sum;
+};
+```
+
+You can more or less treat the inside of the curly braces the same as you would in a traditional function, with the exception that `arguments` is not available.
+
+If you want to create a function that does nothing, then you need to include curly braces. e.g.
+
+```js
+let doNothing = () => {};
+
+// effectively equivalent to:
+var doNothing = function() {};
+```
+
+An arrow function that wants to return an object literal outside of a function body must wrap the literal in parentheses. e.g.
+```js
+let getItem = id => ({ id: id, name: "bag" });
+```
+Wrapping the object literal in parentheses signals that the braces are an object literal instead of the function body.
+
+### 7. Modules
 
 Before ES6 everything in every JS file of an application shared one global scope, that caused problems like naming collisions and security concerns.
 
