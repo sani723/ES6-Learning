@@ -475,3 +475,61 @@ One goal of ES6 was to solve the scope problem and bring some order to JS applic
 > Modules are JavaScript files that are loaded in a different mode.
 
 It helps with organization, maintenance, testing and most importantly dependency management. This separation allows us to pull in various modules only when we need them.
+
+Some of the key differences the way `modules` load as opposed to `scripts`(This different mode is necessary because modules have very different semantics than scripts) are following.
+
+* Modules do not pollute the global namespace, in other words variables created in a module aren’t automatically added to the shared global scope. So no need for IIFE.
+* Module code automatically runs in strict mode, and there’s no way to opt-out of strict mode.
+* The value of this in the top level of a module is undefined.
+* Modules must export anything that should be available to code outside of the module.
+* Modules may import bindings from other modules.
+
+This difference represents a significant change in how JS code is loaded and evaluated. The real power of modules is the ability to export and import only bindings you need, rather than everything in a file.
+
+* **Basic Exporting** One can use the `export` keyword to expose parts of code to other modules. In the simplest case, you can place export in front of any variable, function, or class declaration to export it from the module, like this:
+
+```javascript
+// export data
+export var city = "Dubai";
+export let name = "Sajjad";
+export const postal = 87767;
+
+// export function
+export function sum(num1, num2) {
+    return num1 + num1;
+}
+
+// export class
+export class Rectangle {
+    constructor(length, width) {
+        this.length = length;
+        this.width = width;
+    }
+}
+
+// this function is private to the module
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+```
+
+One can also export references instead of a declaration e.g.
+
+```javascript
+// define a function...
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+
+// ...and then export it later
+export { multiply };
+```
+
+Note each exported function or class also has a name, that is because exported function and class declarations require a name. You can not export anonymous functions or classes using this syntax unless you use the `default` keyword.
+
+* **Basic Importing** Once you have a module with exports, you can access the functionality in another module by using the `import` keyword e.g.
+
+```javascript
+import { identifier1, identifier2 } from "./example";
+```
+
