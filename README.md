@@ -569,5 +569,5 @@ This import format is called a `namespace import` because the example object doe
 import { sum } from "./example";
 import { multiply } from "./example";
 import { name } from "./example";
-
 ```
+
