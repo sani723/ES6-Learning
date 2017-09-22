@@ -551,7 +551,7 @@ console.log( sum(3,4) ); // 7
 import { sum, multiply, city } from "./example";
 ```
 
-* **Importing All of a Module** There’s also a special case that allows you to import the entire module as a single object. All of the exports are then available on that object as properties. e.g.
+* **Importing All of a Module** There is also a special case that allows you to import the entire module as a single object. All of the exports are then available on that object as properties. e.g.
 
 ```javascript
 // import everything
@@ -571,3 +571,40 @@ import { multiply } from "./example";
 import { name } from "./example";
 ```
 
+* **Module Syntax Limitations** An important limitation of both `export` and `import` is that they must be used outside other statements and functions. For instance, this code will give a syntax error. e.g.
+
+```js
+if (true) {
+  export name;    // syntax error
+}
+```
+
+The `export` statement is inside an `if` statement, which isn’t allowed. Exports cannot be conditional or done dynamically in any way. One reason module syntax exists is to let the JavaScript engine staticly determine what will be exported. As such, you can only use `export` at the top-level of a module.
+
+Similarly, you can not use `import` inside of a statement; you can only use it at the top-level. That means this code also gives a syntax error:
+
+```js
+function doSomething() {
+  import sum from "./example";    // syntax error
+}
+```
+
+* **Renaming Exports and Imports** You can change the name of a variable, function, or class, both during the export and during the import.
+
+In the first case, suppose you have a function that you’d like to export with a different name. You can use the as keyword to specify the name that the function should be known as outside of the module:. e.g.
+
+```js
+function sum(a, b) {
+    return a + b;
+}
+
+export { sum as add }; // exporting
+
+// Then you can import it 
+import { add } from "./example";
+
+// Or if the module, importing the function wants to use a different name, it can also use `as`
+import { add as sum } from "./example";
+console.log(typeof add);            // undefined
+console.log(sum(1, 2));             // 3
+```
