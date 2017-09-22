@@ -533,3 +533,41 @@ Note each exported function or class also has a name, that is because exported f
 import { identifier1, identifier2 } from "./example";
 ```
 
+When importing a binding from a module, the binding acts as if it were defined using `const`. That means you can not define another variable with the same name (including importing another binding of the same name), use the identifier before the import statement, or change its value.
+
+* **Importing a Single Binding** Even though your module exports more than just one function, you can import only what is required. e.g.
+
+```javascript
+// import just one
+import { sum } from "./example";
+
+console.log( sum(3,4) ); // 7
+```
+
+* **Importing Multiple Bindings** If you want to import multiple bindings from your module, you can explicitly list them out as follows:
+
+```javascript
+// import multiple
+import { sum, multiply, city } from "./example";
+```
+
+* **Importing All of a Module** There’s also a special case that allows you to import the entire module as a single object. All of the exports are then available on that object as properties. e.g.
+
+```javascript
+// import everything
+import * as example from "./example";
+console.log(example.sum(1,3));          // 4
+console.log(example.city);          	// Dubai
+console.log(example.multiply(1, 2));    // 2
+```
+
+This import format is called a `namespace import` because the example object does not exist inside of the example.js file and is instead created to be used as a namespace object for all of the exported members of example.js.
+
+> Note: That no matter how many times you use a module in import statements, the module will only be executed once. After the code to import the module executes, the instantiated module is kept in memory and reused whenever another import statement references it. e.g.
+
+```js
+import { sum } from "./example";
+import { multiply } from "./example";
+import { name } from "./example";
+
+```
