@@ -530,6 +530,22 @@ let getItem = id => ({ id: id, name: "bag" });
 ```
 Wrapping the object literal in parentheses signals that the braces are an object literal instead of the function body.
 
+When you want to create a scope that is shielded from the rest of a program, you used to create `immediately-invoked function expressions (IIFEs)`. You can accomplish the same using arrow functions, so long as you wrap the arrow function in parentheses. e.g.
+
+```js
+let person = ((name) => {
+    return {
+      getName: function() {
+        return name;
+      }
+    };
+})("Sajjad");
+
+console.log(person.getName());      // Sajjad
+```
+
+Arrow functions have no `this` binding, which means the value of `this` inside an arrow function can only be determined by looking up the scope chain. If the arrow function is contained within a nonarrow function, `this` will be the same as the containing function; otherwise, `this` is equivalent to the value of this in the global scope.
+
 ### 7. Modules
 
 Before ES6 everything in every JS file of an application shared one global scope, that caused problems like naming collisions and security concerns.
